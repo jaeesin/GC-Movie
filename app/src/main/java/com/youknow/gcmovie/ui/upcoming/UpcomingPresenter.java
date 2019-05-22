@@ -12,8 +12,8 @@ import retrofit2.Response;
 
 class UpcomingPresenter implements UpcomingContract.Presenter {
 
-    private UpcomingContract.View mView;
-    private TmdbService mTmdbService;
+    private final UpcomingContract.View mView;
+    private final TmdbService mTmdbService;
     private Call<MoviesResp> mCall;
 
     UpcomingPresenter(UpcomingContract.View view, TmdbService tmdbService) {

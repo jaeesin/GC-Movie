@@ -12,8 +12,8 @@ import retrofit2.Response;
 
 public class NowPlayingPresenter implements NowPlayingContract.Presenter {
 
-    private NowPlayingContract.View mView;
-    private TmdbService mTmdbService;
+    private final NowPlayingContract.View mView;
+    private final TmdbService mTmdbService;
     private Call<MoviesResp> mCall;
 
     public NowPlayingPresenter(NowPlayingContract.View view, TmdbService tmdbService) {

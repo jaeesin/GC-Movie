@@ -19,11 +19,17 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolder> {
 
-    private Context context;
-    private List<Result> movies = new ArrayList<>();
+    public interface MovieClickListener {
+        void onMovieClick(String movieId);
+    }
 
-    public MoviesAdapter(Context context) {
+    private final Context context;
+    private final MovieClickListener movieClickListener;
+    private final List<Result> movies = new ArrayList<>();
+
+    public MoviesAdapter(Context context, MovieClickListener listener) {
         this.context = context;
+        this.movieClickListener = listener;
     }
 
     @NonNull
@@ -40,6 +46,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
         holder.tvTitle.setText(movie.getTitle());
         holder.tvReleaseDate.setText(movie.getReleaseDate());
         holder.tvRatingAvg.setText(String.valueOf(movie.getVoteAverage()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                movieClickListener.onMovieClick(String.valueOf(movie.getId()));
+            }
+        });
     }
 
     @Override
@@ -55,10 +68,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
 
     class MovieHolder extends RecyclerView.ViewHolder {
 
-        ImageView ivPoster;
-        TextView tvTitle;
-        TextView tvReleaseDate;
-        TextView tvRatingAvg;
+        final ImageView ivPoster;
+        final TextView tvTitle;
+        final TextView tvReleaseDate;
+        final TextView tvRatingAvg;
 
         MovieHolder(View itemView) {
             super(itemView);

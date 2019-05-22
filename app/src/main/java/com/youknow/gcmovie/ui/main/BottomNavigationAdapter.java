@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.youknow.gcmovie.ui.nowplaying.NowPlayingFragment;
 import com.youknow.gcmovie.ui.upcoming.UpcomingFragment;
 
-public class BottomNavigationAdapter extends FragmentStatePagerAdapter {
+class BottomNavigationAdapter extends FragmentStatePagerAdapter {
 
     BottomNavigationAdapter(FragmentManager fm) {
         super(fm);

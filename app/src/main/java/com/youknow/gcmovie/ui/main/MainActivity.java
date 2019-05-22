@@ -13,6 +13,8 @@ import com.youknow.gcmovie.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String MOVIE_ID = "movie_id";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

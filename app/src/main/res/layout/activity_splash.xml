@@ -8,8 +8,7 @@
         tools:context=".ui.splash.SplashActivity">
 
     <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/aniMovie"
-            android:layout_width="196dp"
+        android:layout_width="196dp"
             android:layout_height="196dp"
             app:lottie_fileName="ani_movie.zip"
             app:lottie_loop="true"

@@ -15,7 +15,6 @@
         style="@style/PosterImageView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/infoContainer"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="@color/transparent"

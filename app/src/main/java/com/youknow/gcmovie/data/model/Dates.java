@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Dates {
+class Dates {
     private String maximum;
     private String minimum;
 }
