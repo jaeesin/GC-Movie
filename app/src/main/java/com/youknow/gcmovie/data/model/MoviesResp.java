@@ -8,10 +8,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MoviesResp {
-    private int page;
     private List<Result> results;
-    private Dates dates;
-    private int totalPages;
-    private int totalResults;
 }
 

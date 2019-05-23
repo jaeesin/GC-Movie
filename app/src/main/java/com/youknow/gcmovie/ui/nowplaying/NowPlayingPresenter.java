@@ -16,7 +16,7 @@ public class NowPlayingPresenter implements NowPlayingContract.Presenter {
     private final TmdbService mTmdbService;
     private Call<MoviesResp> mCall;
 
-    public NowPlayingPresenter(NowPlayingContract.View view, TmdbService tmdbService) {
+    NowPlayingPresenter(NowPlayingContract.View view, TmdbService tmdbService) {
         mView = view;
         mTmdbService = tmdbService;
     }
