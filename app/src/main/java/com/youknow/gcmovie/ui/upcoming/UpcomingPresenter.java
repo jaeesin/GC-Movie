@@ -1,5 +1,6 @@
 package com.youknow.gcmovie.ui.upcoming;
 
+import com.youknow.gcmovie.BuildConfig;
 import com.youknow.gcmovie.data.model.MoviesResp;
 import com.youknow.gcmovie.data.source.TmdbService;
 import com.youknow.gcmovie.data.source.TmdbServiceProvider;
@@ -20,7 +21,7 @@ public class UpcomingPresenter implements UpcomingContract.Presenter {
 
     @Override
     public void getMovies() {
-        mTmdbService.getNowPlayings("").enqueue(new Callback<MoviesResp>() {
+        mTmdbService.getNowPlayings(BuildConfig.API_KEY).enqueue(new Callback<MoviesResp>() {
             @Override
             public void onResponse(Call<MoviesResp> call, Response<MoviesResp> response) {
                 mView.onMoviesLoaded(response.body().getResults());
