@@ -21,7 +21,7 @@ public class UpcomingPresenter implements UpcomingContract.Presenter {
 
     @Override
     public void getMovies() {
-        mTmdbService.getNowPlayings(BuildConfig.API_KEY).enqueue(new Callback<MoviesResp>() {
+        mTmdbService.getUpcomings(BuildConfig.API_KEY).enqueue(new Callback<MoviesResp>() {
             @Override
             public void onResponse(Call<MoviesResp> call, Response<MoviesResp> response) {
                 if (response.isSuccessful()) {
