@@ -4,7 +4,9 @@ import com.youknow.gcmovie.R;
 import com.youknow.gcmovie.data.model.Result;
 import com.youknow.gcmovie.data.source.TmdbServiceProvider;
 import com.youknow.gcmovie.ui.adapter.MoviesAdapter;
+import com.youknow.gcmovie.ui.details.DetailsActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,22 +20,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class UpcomingFragment extends Fragment implements UpcomingContract.View {
+public class UpcomingFragment extends Fragment implements UpcomingContract.View, MoviesAdapter.MovieClickListener {
 
     private UpcomingContract.Presenter mPresenter;
 
-    private RecyclerView rvMovies;
+    @BindView(R.id.tvErrMessage) TextView tvErrMessage;
+    @BindView(R.id.rvMovies) RecyclerView rvMovies;
     private MoviesAdapter moviesAdapter;
-    private TextView tvErrMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
         mPresenter = new UpcomingPresenter(this, TmdbServiceProvider.getService());
 
-        rvMovies = rootView.findViewById(R.id.rvMovies);
-        tvErrMessage = rootView.findViewById(R.id.tvErrMessage);
+        ButterKnife.bind(this, rootView);
 
         return rootView;
     }
@@ -42,7 +45,7 @@ public class UpcomingFragment extends Fragment implements UpcomingContract.View 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        moviesAdapter = new MoviesAdapter(getContext());
+        moviesAdapter = new MoviesAdapter(getContext(), this);
         rvMovies.setAdapter(moviesAdapter);
         rvMovies.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.grid_layout_columns)));
 
@@ -57,5 +60,10 @@ public class UpcomingFragment extends Fragment implements UpcomingContract.View 
     @Override
     public void onError() {
         tvErrMessage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onMovieClicked(String title) {
+        startActivity(new Intent(getContext(), DetailsActivity.class).putExtra("MOVIE", title));
     }
 }

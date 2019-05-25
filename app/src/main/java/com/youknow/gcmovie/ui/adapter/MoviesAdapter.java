@@ -19,11 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolder> {
 
+    public interface MovieClickListener {
+        void onMovieClicked(String title);
+    }
+
     private Context context;
+    private MovieClickListener listener;
     private List<Result> movies = new ArrayList<>();
 
-    public MoviesAdapter(Context context) {
+    public MoviesAdapter(Context context, MovieClickListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -40,6 +46,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
         holder.tvTitle.setText(movie.getTitle());
         holder.tvReleaseDate.setText(movie.getReleaseDate());
         holder.tvRatingAvg.setText(String.valueOf(movie.getVoteAverage()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onMovieClicked(movie.getTitle());
+            }
+        });
     }
 
     @Override

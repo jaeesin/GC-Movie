@@ -7,21 +7,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.youknow.gcmovie.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.mainViewPager) ViewPager mainViewPager;
+    @BindView(R.id.bottomNavigation) BottomNavigationView bottomNavigation;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        final ViewPager mainViewPager = findViewById(R.id.mainViewPager);
         mainViewPager.setAdapter(new BottomNavigationAdapter(getSupportFragmentManager()));
 
-        final BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
