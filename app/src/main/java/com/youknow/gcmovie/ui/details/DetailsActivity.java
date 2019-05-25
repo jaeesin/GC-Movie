@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
@@ -24,32 +26,22 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
 
     private DetailsContract.Presenter detailsPresenter;
 
-    private LottieAnimationView movieProgressBar;
-    private TextView tvOverviewLabel;
-    private TextView tvOverview;
-    private TextView tvReleaseDate;
-    private TextView tvRuntime;
-    private TextView tvVoteAvg;
-    private TextView tvTagline;
-    private TextView tvErrMessage;
-    private ImageView ivPoster;
-    private RecyclerView rvGenres;
+    @BindView(R.id.movieProgressBar) LottieAnimationView movieProgressBar;
+    @BindView(R.id.tvOverviewLabel) TextView tvOverviewLabel;
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.tvReleaseDate) TextView tvReleaseDate;
+    @BindView(R.id.tvRuntime) TextView tvRuntime;
+    @BindView(R.id.tvVoteAvg) TextView tvVoteAvg;
+    @BindView(R.id.tvTagline) TextView tvTagline;
+    @BindView(R.id.tvErrMessage) TextView tvErrMessage;
+    @BindView(R.id.ivPoster) ImageView ivPoster;
+    @BindView(R.id.rvGenres) RecyclerView rvGenres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
-        movieProgressBar = findViewById(R.id.movieProgressBar);
-        tvOverviewLabel = findViewById(R.id.tvOverviewLabel);
-        tvOverview = findViewById(R.id.tvOverview);
-        tvReleaseDate = findViewById(R.id.tvReleaseDate);
-        tvRuntime = findViewById(R.id.tvRuntime);
-        tvVoteAvg = findViewById(R.id.tvVoteAvg);
-        tvTagline = findViewById(R.id.tvTagline);
-        tvErrMessage = findViewById(R.id.tvErrMessage);
-        ivPoster = findViewById(R.id.ivPoster);
-        rvGenres = findViewById(R.id.rvGenres);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         if (!intent.hasExtra(MOVIE_ID)) {

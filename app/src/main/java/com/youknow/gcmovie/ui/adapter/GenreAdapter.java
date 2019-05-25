@@ -1,18 +1,19 @@
 package com.youknow.gcmovie.ui.adapter;
 
+import com.youknow.gcmovie.R;
+import com.youknow.gcmovie.data.model.Genre;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import com.youknow.gcmovie.R;
-import com.youknow.gcmovie.data.model.Genre;
-
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreHolder> {
 
@@ -40,12 +41,11 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreHolder>
 
     class GenreHolder extends RecyclerView.ViewHolder {
 
-        final TextView tvGenre;
+        @BindView(R.id.tvGenre) TextView tvGenre;
 
         GenreHolder(@NonNull View itemView) {
             super(itemView);
-
-            tvGenre = itemView.findViewById(R.id.tvGenre);
+            ButterKnife.bind(this, itemView);
         }
 
     }

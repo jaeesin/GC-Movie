@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.youknow.gcmovie.R;
@@ -28,19 +30,17 @@ public class NowPlayingFragment extends Fragment implements NowPlayingContract.V
 
     private NowPlayingContract.Presenter mPresenter;
 
-    private RecyclerView rvMovies;
-    private LottieAnimationView moviesProgressBar;
-    private TextView tvErrMessage;
+    @BindView(R.id.rvMovies) RecyclerView rvMovies;
+    @BindView(R.id.moviesProgressBar) LottieAnimationView moviesProgressBar;
+    @BindView(R.id.tvErrMessage) TextView tvErrMessage;
     private MoviesAdapter moviesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_movies, container, false);
-        mPresenter = new NowPlayingPresenter(this, TmdbServiceProvider.getService());
+        ButterKnife.bind(this, root);
 
-        rvMovies = root.findViewById(R.id.rvMovies);
-        moviesProgressBar = root.findViewById(R.id.moviesProgressBar);
-        tvErrMessage = root.findViewById(R.id.tvErrMessage);
+        mPresenter = new NowPlayingPresenter(this, TmdbServiceProvider.getService());
 
         return root;
     }

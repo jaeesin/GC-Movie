@@ -1,5 +1,9 @@
 package com.youknow.gcmovie.ui.adapter;
 
+import com.bumptech.glide.Glide;
+import com.youknow.gcmovie.R;
+import com.youknow.gcmovie.data.model.Result;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,15 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.youknow.gcmovie.R;
-import com.youknow.gcmovie.data.model.Result;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolder> {
 
@@ -47,12 +49,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
         holder.tvReleaseDate.setText(movie.getReleaseDate());
         holder.tvRatingAvg.setText(String.valueOf(movie.getVoteAverage()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                movieClickListener.onMovieClick(String.valueOf(movie.getId()));
-            }
-        });
+        holder.itemView.setOnClickListener(v -> movieClickListener.onMovieClick(String.valueOf(movie.getId())));
     }
 
     @Override
@@ -68,18 +65,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieHolde
 
     class MovieHolder extends RecyclerView.ViewHolder {
 
-        final ImageView ivPoster;
-        final TextView tvTitle;
-        final TextView tvReleaseDate;
-        final TextView tvRatingAvg;
+        @BindView(R.id.ivPoster) ImageView ivPoster;
+        @BindView(R.id.tvTitle) TextView tvTitle;
+        @BindView(R.id.tvReleaseDate) TextView tvReleaseDate;
+        @BindView(R.id.tvRatingAvg) TextView tvRatingAvg;
 
         MovieHolder(View itemView) {
             super(itemView);
-
-            ivPoster = itemView.findViewById(R.id.ivPoster);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
-            tvRatingAvg = itemView.findViewById(R.id.tvRatingAvg);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
