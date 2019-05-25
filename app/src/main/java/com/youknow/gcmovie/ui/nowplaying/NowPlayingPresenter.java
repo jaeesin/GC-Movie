@@ -3,7 +3,6 @@ package com.youknow.gcmovie.ui.nowplaying;
 import com.youknow.gcmovie.BuildConfig;
 import com.youknow.gcmovie.data.model.MoviesResp;
 import com.youknow.gcmovie.data.source.TmdbService;
-import com.youknow.gcmovie.data.source.TmdbServiceProvider;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,9 +13,9 @@ public class NowPlayingPresenter implements NowPlayingContract.Presenter {
     private NowPlayingContract.View mView;
     private TmdbService mTmdbService;
 
-    NowPlayingPresenter(NowPlayingContract.View view) {
+    NowPlayingPresenter(NowPlayingContract.View view, TmdbService tmdbService) {
         mView = view;
-        mTmdbService = TmdbServiceProvider.getService();
+        mTmdbService = tmdbService;
     }
 
     @Override

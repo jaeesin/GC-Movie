@@ -2,6 +2,7 @@ package com.youknow.gcmovie.ui.nowplaying;
 
 import com.youknow.gcmovie.R;
 import com.youknow.gcmovie.data.model.Result;
+import com.youknow.gcmovie.data.source.TmdbServiceProvider;
 import com.youknow.gcmovie.ui.adapter.MoviesAdapter;
 
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class NowPlayingFragment extends Fragment implements NowPlayingContract.V
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
-        mPresenter = new NowPlayingPresenter(this);
+        mPresenter = new NowPlayingPresenter(this, TmdbServiceProvider.getService());
 
         rvMovies = rootView.findViewById(R.id.rvMovies);
         tvErrMessage = rootView.findViewById(R.id.tvErrMessage);
