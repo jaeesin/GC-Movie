@@ -43,7 +43,7 @@ public class NowPlayingFragment extends Fragment implements NowPlayingContract.V
 
         moviesAdapter = new MoviesAdapter(getContext());
         rvMovies.setAdapter(moviesAdapter);
-        rvMovies.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvMovies.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.grid_layout_columns)));
 
         mPresenter.getMovies();
     }

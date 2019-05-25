@@ -43,7 +43,7 @@ public class UpcomingFragment extends Fragment implements UpcomingContract.View 
 
         moviesAdapter = new MoviesAdapter(getContext());
         rvMovies.setAdapter(moviesAdapter);
-        rvMovies.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvMovies.setLayoutManager(new GridLayoutManager(getContext(), getResources().getInteger(R.integer.grid_layout_columns)));
 
         mPresenter.getMovies();
     }
