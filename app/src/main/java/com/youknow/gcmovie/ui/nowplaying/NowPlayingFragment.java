@@ -1,12 +1,17 @@
 package com.youknow.gcmovie.ui.nowplaying;
 
 import com.youknow.gcmovie.R;
+import com.youknow.gcmovie.data.model.Result;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class NowPlayingFragment extends Fragment implements NowPlayingContract.View {
@@ -20,4 +25,19 @@ public class NowPlayingFragment extends Fragment implements NowPlayingContract.V
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.getMovies();
+    }
+
+    @Override
+    public void onMoviesLoaded(List<Result> results) {
+
+    }
+
+    @Override
+    public void onError() {
+
+    }
 }

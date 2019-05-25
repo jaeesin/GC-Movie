@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-class Result {
+public class Result {
     @SerializedName("poster_path")
     private String posterPath;
     @SerializedName("release_date")
