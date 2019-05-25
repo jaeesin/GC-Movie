@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -18,10 +19,15 @@ public class UpcomingFragment extends Fragment implements UpcomingContract.View 
 
     private UpcomingContract.Presenter mPresenter;
 
+    private TextView tvErrMessage;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
         mPresenter = new UpcomingPresenter(this);
+
+        tvErrMessage = rootView.findViewById(R.id.tvErrMessage);
+
         return rootView;
     }
 
@@ -38,6 +44,6 @@ public class UpcomingFragment extends Fragment implements UpcomingContract.View 
 
     @Override
     public void onError() {
-
+        tvErrMessage.setVisibility(View.VISIBLE);
     }
 }
