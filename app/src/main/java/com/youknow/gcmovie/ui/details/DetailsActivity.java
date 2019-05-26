@@ -68,6 +68,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsContrac
 
     @Override
     public void onMovieLoaded(MovieResp movie) {
+        setTitle(movie.getTitle());
         tvOverviewLabel.setVisibility(View.VISIBLE);
 
         rvGenres.setAdapter(new GenreAdapter(movie.getGenres()));
